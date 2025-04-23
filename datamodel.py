@@ -11,6 +11,8 @@ class Riderequest:
         self.airport = airport
         self.datetime = datetime
 
+def
+
 Tolerance_1 = timedelta(minutes = 30)
 Tolerance_2 = timedelta(minutes = 60)
 
@@ -19,4 +21,15 @@ def perfect_match(new_req, exisiting_req):
     for request in exisiting_req:
         if(request.airport == new_req.airport and abs(request.datetime - new_request.datetime) <= Tolerance_1):
             matches.append(request)
+            exisiting_req.remove(request)
     return matches
+
+def potential_match(new_req, exisiting_req):
+    pot = []
+    for request in exisiting_req:
+        if(request.airport == new_req.airport 
+           and abs(request.datetime - new_request.datetime) > Tolerance_1
+           and abs(request.datetime - new_request.datetime) <= Tolerance_2):
+            pot.append(request)
+            exisiting_req.remove(request)
+    return None
