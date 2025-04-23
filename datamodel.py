@@ -11,7 +11,8 @@ class Riderequest:
         self.airport = airport
         self.datetime = datetime
 
-def
+    def __str__(self):
+        return f"{self.name} - {self.airport} at {self.datetime}"
 
 Tolerance_1 = timedelta(minutes = 30)
 Tolerance_2 = timedelta(minutes = 60)
