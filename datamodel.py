@@ -35,5 +35,7 @@ def potential_match(new_req, exisiting_req):
             exisiting_req.remove(request)
     return pot
 
-
+engine = create_engine('sqlite://rideinfo.db', echo=True)
+Session = sessionmaker(bind=engine)
+Base.metadata.create_all(engine)
 
