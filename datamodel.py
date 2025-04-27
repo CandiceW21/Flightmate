@@ -1,10 +1,17 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import timedelta
 
 Base = declarative_base()
 
-class Riderequest:
+class Riderequest(Base):
+    __tablename__  = 'ride_requests'
+    id = Column(Integer, primary_key = True)
+    name = Column(String)
+    email = Column(String)
+    airport = Column(String)
+    datetime = Column(DateTime)
+    
     def __init__(self, name, email, airport, datetime):
         self.name = name
         self.email = email
@@ -35,7 +42,8 @@ def potential_match(new_req, exisiting_req):
             exisiting_req.remove(request)
     return pot
 
-engine = create_engine('sqlite://rideinfo.db', echo=True)
+
+engine = create_engine('sqlite:///rideinfo.db', echo=True)
 Session = sessionmaker(bind=engine)
 Base.metadata.create_all(engine)
 
