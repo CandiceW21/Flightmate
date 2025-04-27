@@ -20,9 +20,10 @@ def main():
             pot = potential_match(new_req, existing_requests)
             if pot:
                 for m in pot:
-                    print(f"-{m.name} at {m.datetime}")
+                    print(f"-potentially with {m.name} at {m.datetime}")
             else:
                 existing_requests.append(new_req)
         
+    
 if __name__ == "__main__":
     main()
