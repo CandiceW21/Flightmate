@@ -1,5 +1,6 @@
-from datamodel import Riderequest, perfect_match, potential_match
+from datamodel import Riderequest, perfect_match, potential_match, Session
 from datetime import datetime
+
 existing_requests = []
 
 def main():
@@ -44,7 +45,7 @@ def main():
                 else:
                     print(f"no match now")
         cont = input("\n add? (y/n): ")
-        if cont() != 'y':
+        if cont != 'y':
             break
 
     session.close()
