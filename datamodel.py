@@ -28,8 +28,9 @@ def perfect_match(new_req, exisiting_req):
     matches = []
     for request in exisiting_req:
         if(request.airport == new_req.airport and abs(request.datetime - new_req.datetime) <= Tolerance_1):
-            matches.append(request)
+            matches.append((new_req,request))
             exisiting_req.remove(request)
+            break
     return matches
 
 def potential_match(new_req, exisiting_req):
@@ -38,7 +39,7 @@ def potential_match(new_req, exisiting_req):
         if(request.airport == new_req.airport 
            and abs(request.datetime - new_req.datetime) > Tolerance_1
            and abs(request.datetime - new_req.datetime) <= Tolerance_2):
-            pot.append(request)
+            pot.append((new_req, request))
             exisiting_req.remove(request)
     return pot
 
