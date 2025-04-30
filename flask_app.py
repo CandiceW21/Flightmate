@@ -1,13 +1,23 @@
 from flask import Flask, render_template, request, redirect
 from datamodel import Base, Riderequest, perfect_match, potential_match, Session
 from datetime import datetime
-
+import smtplib
+from email.mime.text import MIMEText
 app = Flask(__name__)
 ready = False
+
+def
+
+
+
+
+
+
 
 @app.route('/', methods = ['GET','POST'])
 def index():
     session = Session()
+    ready = False
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['name']
@@ -39,12 +49,14 @@ def index():
                 pot = potential_match(new_req, all_reqs)
                 if pot:
                     for m in pot:
-                        print(f"-potentially with {m.name} at {m.datetime}")
+                        print(f'"your request {m[0].name}" at {m[0].datetime} can potentially match with {m[1].name} at {m[1].datetime}"')
                 else:
                     print(f"no match now")
     return render_template("index.html")
 
-        
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
            
         
