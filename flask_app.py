@@ -6,13 +6,19 @@ from email.mime.text import MIMEText
 app = Flask(__name__)
 ready = False
 
-def
 
+def send_email(to_email, subject, body):
+    from_email = "candice2106.7@gmail.com"
+    password = "owmn ooxt sdnn vjra"
 
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = from_email
+    msg["To"] = to_email
 
-
-
-
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(from_email, password)
+        server.send_message(msg)
 
 @app.route('/', methods = ['GET','POST'])
 def index():
@@ -20,7 +26,7 @@ def index():
     ready = False
     if request.method == 'POST':
         name = request.form['name']
-        email = request.form['name']
+        email = request.form['email']
         airport = request.form['airport']
         datetime_str = request.form['datetime']
         dt = datetime.strptime(datetime_str, "%Y/%m/%d %H:%M")
@@ -41,8 +47,11 @@ def index():
             if matches:
                 for m in matches:
                     print(f'"{m[0].name}" at {m[0].datetime} matches with {m[1].name} at {m[1].datetime}"')
+                    send_email(new_req.email, "RIDE MATCH FOUND", f"You are matched with {m[1].name} at {m[1].datetime}")
+                    send_email(m[1].email, "RIDE MATCH FOUND", f"You are matched with {m[0].name} at {m[0].datetime}")
                     session.delete(m[0])
                     session.delete(m[1])
+                    
                 session.delete(new_req)
                 session.commit()
             else:
