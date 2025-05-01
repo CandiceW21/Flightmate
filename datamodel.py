@@ -44,7 +44,7 @@ def potential_match(new_req, exisiting_req):
            and abs(request.datetime - new_req.datetime) > Tolerance_1
            and abs(request.datetime - new_req.datetime) <= Tolerance_2):
             pot.append((new_req, request))
-            
+            break
     return pot
 
 
