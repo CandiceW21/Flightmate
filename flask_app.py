@@ -60,6 +60,7 @@ def index():
                 if pot:
                     for m in pot:
                         print(f'your request "{m[0].name}" at {m[0].datetime} can potentially match with "{m[1].name}" at {m[1].datetime}')
+                        
                 else:
                     print(f"no match now")
     return render_template("index.html")
@@ -68,7 +69,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-           
+ #<br>Airport(e.g. JFK): <input type="text" name = "airport"><br>          
         
         
     
