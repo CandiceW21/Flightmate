@@ -22,8 +22,9 @@ def send_email(to_email, subject, body):
 
 @app.route('/', methods = ['GET','POST'])
 def index():
+    global ready
     session = Session()
-    ready = False
+    
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -46,19 +47,19 @@ def index():
 
             if matches:
                 for m in matches:
-                    print(f'"{m[0].name}" at {m[0].datetime} matches with {m[1].name} at {m[1].datetime}"')
-                    send_email(new_req.email, "RIDE MATCH FOUND", f"You are matched with {m[1].name} at {m[1].datetime}")
-                    send_email(m[1].email, "RIDE MATCH FOUND", f"You are matched with {m[0].name} at {m[0].datetime}")
+                    print(f'"{m[0].name}" at {m[0].datetime} matches with {m[1].email} at {m[1].datetime}"')
+                    send_email(new_req.email, f'{new_req.name} ride match found!', f'Dear "{new_req.name}",You are matched with "{m[1].name}" who wishes to leave at {m[1].datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
+                    send_email(m[1].email, f'{m[1].name} ride match found!', f'Dear "{m[1].name}", You are matched with "{new_req.name}" who wishes to leave at {new_req.datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
                     session.delete(m[0])
                     session.delete(m[1])
                     
-                session.delete(new_req)
+                #session.delete(new_req)
                 session.commit()
             else:
                 pot = potential_match(new_req, all_reqs)
                 if pot:
                     for m in pot:
-                        print(f'"your request {m[0].name}" at {m[0].datetime} can potentially match with {m[1].name} at {m[1].datetime}"')
+                        print(f'your request "{m[0].name}" at {m[0].datetime} can potentially match with "{m[1].name}" at {m[1].datetime}')
                 else:
                     print(f"no match now")
     return render_template("index.html")
