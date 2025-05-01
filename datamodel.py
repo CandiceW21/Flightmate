@@ -27,20 +27,24 @@ Tolerance_2 = timedelta(minutes = 60)
 def perfect_match(new_req, exisiting_req):
     matches = []
     for request in exisiting_req:
+        if request.id == new_req.id:
+            continue
         if(request.airport == new_req.airport and abs(request.datetime - new_req.datetime) <= Tolerance_1):
             matches.append((new_req,request))
-            exisiting_req.remove(request)
+            
             break
     return matches
 
 def potential_match(new_req, exisiting_req):
     pot = []
     for request in exisiting_req:
+        if request.id == new_req.id:
+            continue
         if(request.airport == new_req.airport 
            and abs(request.datetime - new_req.datetime) > Tolerance_1
            and abs(request.datetime - new_req.datetime) <= Tolerance_2):
             pot.append((new_req, request))
-            exisiting_req.remove(request)
+            
     return pot
 
 
