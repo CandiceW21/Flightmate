@@ -1,5 +1,6 @@
-from datamodel import Riderequest, perfect_match, potential_match, Session
+from datamodel import Base, Riderequest, perfect_match, potential_match, Session
 from datetime import datetime
+
 
 existing_requests = []
 
@@ -65,3 +66,4 @@ def main():
     
 if __name__ == "__main__":
     main()
+#google cloud run (flask applications); resend.com (email services)
