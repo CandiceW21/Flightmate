@@ -48,8 +48,8 @@ def index():
             if matches:
                 for m in matches:
                     print(f'"{m[0].name}" at {m[0].datetime} matches with {m[1].email} at {m[1].datetime}"')
-                    send_email(new_req.email, f'{new_req.name} ride match found!', f'Dear "{new_req.name}",You are matched with "{m[1].name}" who wishes to leave at {m[1].datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
-                    send_email(m[1].email, f'{m[1].name} ride match found!', f'Dear "{m[1].name}", You are matched with "{new_req.name}" who wishes to leave at {new_req.datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
+                    send_email(new_req.email, f'Ride match found for you, {new_req.name}!', f'Dear "{new_req.name}",You are matched with "{m[1].name}" who wishes to leave at {m[1].datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
+                    send_email(m[1].email, f'Ride match found for you, {m[1].name}!', f'Dear "{m[1].name}", You are matched with "{new_req.name}" who wishes to leave at {new_req.datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
                     session.delete(m[0])
                     session.delete(m[1])
                     
