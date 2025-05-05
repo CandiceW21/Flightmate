@@ -2,7 +2,7 @@
 
 Flightmate is a ride-sharing web application designed for students to coordinate shared Uber rides to and from airports. This project uses Flask for the web framework and SQLAlchemy for database integration to store and manage user requests.
 
-*Key Features*
+**Key Features** <br>
 Database Integration: User ride requests are stored using SQLAlchemy.
 
 *Matching Algorithm:*
