@@ -13,10 +13,14 @@ The algorithm starts after the first 10 requests have been submitted.
 
 A secondary 60-minute tolerance window is used to notify users via email about potential matches.
 
-Email Notifications: Implemented via smtplib, allowing users to receive emails when potential matches are found.
+*Email Notifications:* 
 
-Web Interface: Running flask_app.py launches a local web server for user interaction.
+Implemented via smtplib, allowing users to receive emails when potential matches are found.
 
-*Future Plans*
+*Web Interface:*
+
+ Running flask_app.py launches a local web server for user interaction.
+
+**Future Plans** <br>
 Deploy the application to a cloud platform to allow public access.
 Improve the matching algorithm and introduce user authentication.
