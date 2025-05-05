@@ -60,7 +60,8 @@ def index():
                 if pot:
                     for m in pot:
                         print(f'your request "{m[0].name}" at {m[0].datetime} can potentially match with "{m[1].name}" at {m[1].datetime}')
-                        
+                        send_email(m[0].email, f'Potential ride match found for you, {new_req.name}!', f'Dear "{new_req.name}",You can potentially be matched with "{m[1].name}" who wishes to leave at {m[1].datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
+                        send_email(m[1].email, f'Potential ride match found for you, {m[1].name}!', f'Dear "{m[1].name}", You can potentially be matched with "{m[0].name}" who wishes to leave at {new_req.datetime}. We hope your trip to {m[1].airport} is pleasant! \n-- Flightmate')
                 else:
                     print(f"no match now")
     return render_template("index.html")
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
- #<br>Airport(e.g. JFK): <input type="text" name = "airport"><br>          
+ 
         
         
     
